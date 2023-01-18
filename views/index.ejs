@@ -23,11 +23,50 @@
       <hr>
       <p>Here are some stats:</p>
       <div class="data-container">
-        <% for(let i = 1; i <= data.itemCount; i++) { %>
-          <div class="data-item"></div>
-        <% } %>  
+          <% for(let i = 1; i <= data.itemCount; i++) { %>
+            <div class="data-item"></div>
+          <% } %>  
+          <% for(let i = 1; i <= data.categoryCount; i++) { %>
+            <div class="data-category"></div>
+          <% } %>  
+          <% for(let i = 1; i <= data.uncategorisedItems; i++) { %>
+            <div class="data-uncategorised"></div>
+          <% } %>  
+          <% for(let i = 1; i <= data.outOfStockItems; i++) { %>
+            <div class="data-outofstock"></div>
+          <% } %>  
       </div>
     </section>
   </body>
-  <script></script>
+  <script defer>
+    console.log('test')
+    let dataContainer = document.querySelector('.data-container')
+    dataContainer.querySelectorAll('div').forEach((div) => {div.addEventListener('mouseover', dataHighlighter); div.addEventListener('mouseleave', removeHighlight)})
+    function dataHighlighter(ev) {
+      switch(ev.target.className){
+        case "data-item":
+          document.querySelectorAll('.data-item').forEach((item) => {
+            item.classList.add('active')
+          })
+          break
+        case "data-category":
+          document.querySelectorAll('.data-category').forEach((item) => {
+            item.classList.add('active')
+          })
+          break
+        case "data-uncategorised":
+          document.querySelectorAll('.data-uncategorised').forEach((item) => {
+            item.classList.add('active')
+          })
+          break
+        default:
+        document.querySelectorAll('.data-outofstock').forEach((item) => {
+            item.classList.add('active')
+          })
+      }
+    }
+    function removeHighlight() {
+      dataContainer.querySelectorAll('.active').forEach((item) => item.classList.remove('active'))
+    }
+  </script>
 </html>
