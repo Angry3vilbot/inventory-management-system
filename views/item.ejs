@@ -5,7 +5,7 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel="stylesheet" href="/stylesheets/listStyle.css">
   </head>
-  <body>
+<body>
     <nav class="sidebar">
       <h2>IMS</h2>
       <div class="nav-links-container"><!-- Used to position links properly -->
@@ -18,11 +18,11 @@
       </div>
     </nav>
     <section class="main">
-      <h1>All Categories</h1>
-      <div class="categories-container">
-        <% data.categories.forEach(category => { %>
-          <a href=<%= category.url %>><%= category.name %></a>
+      <h1>All Items</h1>
+      <div class="items-container">
+        <% data.items.forEach(item => { %>
+          <a href=<%= item.url %>><%= item.name %></a>
         <% }) %>
       </div>
     </section>
-  </body>
+</body>

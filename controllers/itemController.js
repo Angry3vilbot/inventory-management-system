@@ -28,3 +28,20 @@ exports.index = (req, res) => {
         }
     )
 }
+
+exports.allItems = (req, res) => {
+    async.parallel(
+        {
+            items(callback) {
+                ItemModel.find({}, callback)
+            }
+        },
+        (err, results) => {
+            console.log(results)
+            res.render("all_items", {
+                error: err,
+                data: results,
+            });
+        }
+    )
+}

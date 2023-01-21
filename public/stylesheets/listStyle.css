@@ -1,0 +1,11 @@
+.main {
+    display: grid;
+}
+
+.categories-container, .items-container {
+    display: grid;
+    justify-self: center;
+    width: 70rem;
+    gap: 5rem;
+    grid-template-columns: 1fr 1fr 1fr;
+}
