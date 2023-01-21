@@ -7,7 +7,7 @@ const CategorySchema = new Schema({
 }, { versionKey: false })
 
 CategorySchema.virtual("url").get(function () {
-    return `/category/${this.name}`
+    return `/category/${this.name.toLowerCase().replace(/\s/g,'-')}`
 })
 
 module.exports = mongoose.model("Category", CategorySchema, "categories")

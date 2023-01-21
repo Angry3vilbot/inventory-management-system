@@ -50,23 +50,23 @@ body {
 }
 
 .data-item {
-  background-color: #16a34a;
+  background-color: #21c05b;
 }
 
 .data-category {
-  background-color: #22d3ee;
+  background-color: #1fb6cd;
 }
 
 .data-uncategorised {
-  background-color: #6b7280;
+  background-color: #7c8494;
 }
 
 .data-outofstock {
-  background-color: #dc2626;
+  background-color: #cf1e1e;
 }
 
 .data-item:is(.active) {
-  background-color: #0fc552;
+  background-color: #00ff5e;
 }
 
 .data-category:is(.active) {
@@ -79,4 +79,14 @@ body {
 
 .data-outofstock:is(.active) {
   background-color: #fc0000;
+}
+
+.tooltip {
+  display: none;
+}
+
+.data-container:hover ~ .tooltip {
+  display: block;
+  position: fixed;
+  overflow: hidden;
 }

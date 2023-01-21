@@ -10,7 +10,7 @@
       <div class="nav-links-container"><!-- Used to position links properly -->
         <ul>
           <li><a href="">All Items</a></li>
-          <li><a href="">All categories</a></li>
+          <li><a href="/categories">All categories</a></li>
           <li><a href="">Add New Item</a></li>
           <li><a href="">Add New Category</a></li>
         </ul>
@@ -36,11 +36,14 @@
             <div class="data-outofstock"></div>
           <% } %>  
       </div>
+      <span class="tooltip"></span>
     </section>
   </body>
   <script defer>
-    console.log('test')
+    let tooltip = document.querySelector('.tooltip')
     let dataContainer = document.querySelector('.data-container')
+    document.addEventListener('mousemove', (ev) => {tooltip.style.top = `${ev.clientY + 20}px`;
+      tooltip.style.left = `${ev.clientX + 20}px`})
     dataContainer.querySelectorAll('div').forEach((div) => {div.addEventListener('mouseover', dataHighlighter); div.addEventListener('mouseleave', removeHighlight)})
     function dataHighlighter(ev) {
       switch(ev.target.className){
@@ -48,21 +51,25 @@
           document.querySelectorAll('.data-item').forEach((item) => {
             item.classList.add('active')
           })
+          tooltip.innerHTML = 'Total number of items'
           break
         case "data-category":
           document.querySelectorAll('.data-category').forEach((item) => {
             item.classList.add('active')
           })
+          tooltip.innerHTML = 'Total number of categories'
           break
         case "data-uncategorised":
           document.querySelectorAll('.data-uncategorised').forEach((item) => {
             item.classList.add('active')
           })
+          tooltip.innerHTML = 'Number of items without categories'
           break
         default:
         document.querySelectorAll('.data-outofstock').forEach((item) => {
             item.classList.add('active')
           })
+          tooltip.innerHTML = 'Number of Out-of-Stock items'
       }
     }
     function removeHighlight() {

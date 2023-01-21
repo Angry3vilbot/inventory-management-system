@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Inventory Management System</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <nav class="sidebar">
+      <h2>IMS</h2>
+      <div class="nav-links-container"><!-- Used to position links properly -->
+        <ul>
+          <li><a href="">All Items</a></li>
+          <li><a href="">All categories</a></li>
+          <li><a href="">Add New Item</a></li>
+          <li><a href="">Add New Category</a></li>
+        </ul>
+      </div>
+    </nav>
+    <section class="main">
+      <h1>All Categories</h1>
+      <div class="categories-container">
+        <% data.categories.forEach(category => { %>
+          <a href=<%= category.url %>><%= category.name %></a>
+        <% }) %>
+      </div>
+    </section>
+  </body>

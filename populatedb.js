@@ -11,8 +11,8 @@ if (!userArgs[0].startsWith('mongodb')) {
 }
 */
 var async = require('async')
-var Item = require('../inventory-management-app-old/models/item')
-var Category = require('../inventory-management-app-old/models/category')
+var Item = require('./models/item')
+var Category = require('./models/category')
 
 var mongoose = require('mongoose');
 var mongoDB = userArgs[0];
