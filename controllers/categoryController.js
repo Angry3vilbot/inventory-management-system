@@ -1,4 +1,5 @@
 const CategoryModel = require("../models/category.js")
+const ItemModel = require("../models/item.js")
 const async = require("async")
 const { default: mongoose } = require("mongoose")
 
@@ -25,21 +26,22 @@ exports.categoryDisplay = (req, res) => {
                 CategoryModel.find({ $text: { $search: req.params.name } }).exec(callback)
             }
         },
-        (err, results) => {
+        async function (err, results) {
             if(results.category.length > 1) {
-                console.log(results.category)
                 let correctResult = results.category.filter(obj => obj.name.toLowerCase().replace(/\s/g,'-') == req.params.name)
-                console.log(correctResult)
+                const itemsArray = await ItemModel.find({ category: correctResult[0]._id })
                 res.render("category", {
                     error: err,
-                    category: correctResult[0]
+                    category: correctResult[0],
+                    itemsArray: itemsArray
                 })
             }
             else{
-                console.log(results.category[0])
+                const itemsArray = await ItemModel.find({ category: results.category[0]._id })
                 res.render("category", {
                     error: err,
-                    category: results.category[0]
+                    category: results.category[0],
+                    itemsArray: itemsArray
                 })
             }
         }

@@ -3,7 +3,7 @@
   <head>
     <title>Inventory Management System</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link rel="stylesheet" href="/stylesheets/listStyle.css">
+    <link rel="stylesheet" href="/stylesheets/categoryStyle.css">
   </head>
 <body>
     <nav class="sidebar">
@@ -19,6 +19,23 @@
     </nav>
     <section class="main">
       <h1><%= category.name %></h1>
-      
+      <% if (itemsArray.length > 0) { %>
+        <p><strong><%= category.name %></strong> category contains <strong><%= itemsArray.length %></strong> items. All of them are listed below.</p>
+        <div class="item-grid">
+          <% itemsArray.forEach(item => { %>
+           <div class="item">
+            <h4><%= item.name %> </h4>
+            <p>Price: <%= item.price %> EUR</p>
+            <% if (item.stock < 1) {%> 
+            <p>Stock: <span style="color: red;"><%= item.stock %></span> units</p>
+            <%} else { %> 
+              <p>Stock: <span style="color: green;"><%= item.stock %></span> units</p>
+            <% } %> 
+           </div>
+          <% }) %>
+        </div>
+      <% } else { %>
+        <p><strong><%= category.name %></strong> category contains no items.</p>
+      <% } %> 
     </section>
 </body>

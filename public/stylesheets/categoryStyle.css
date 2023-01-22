@@ -1,0 +1,19 @@
+.main {
+    display: grid;
+}
+
+.item-grid {
+    display: grid;
+    justify-self: center;
+    width: 80rem;
+    gap: 5rem;
+    grid-template-columns: 1fr 1fr;
+}
+
+.item {
+    outline: 2px solid black;
+}
+
+.item h4 {
+    text-align: center;
+}
