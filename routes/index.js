@@ -15,4 +15,7 @@ router.get('/category/:name', categoryController.categoryDisplay)
 // All item-related routes
 // GET main item list page
 router.get('/items', itemController.allItems)
+// GET item page
+router.get('/item/:id', itemController.itemDisplay)
+
 module.exports = router;

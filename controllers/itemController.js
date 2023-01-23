@@ -45,3 +45,25 @@ exports.allItems = (req, res) => {
         }
     )
 }
+
+exports.itemDisplay = (req, res) => {
+    async.parallel(
+        {
+            item(callback) {
+                ItemModel.findById(mongoose.Types.ObjectId(req.params.id)).exec(callback)
+            }
+        },
+        async (err, results) => {
+            let categoriesArray = []
+            for (const i in results.item.category){
+                let categ = await CategoryModel.findById(results.item.category[i])
+                categoriesArray.push(categ)
+            }
+            res.render("item", {
+                error: err,
+                data: results.item,
+                categories: categoriesArray,
+            });
+        }
+    )
+}

@@ -3,7 +3,7 @@
   <head>
     <title>Inventory Management System</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link rel="stylesheet" href="/stylesheets/listStyle.css">
+    <link rel="stylesheet" href="/stylesheets/itemStyle.css">
   </head>
 <body>
     <nav class="sidebar">
@@ -18,11 +18,14 @@
       </div>
     </nav>
     <section class="main">
-      <h1>All Items</h1>
-      <div class="items-container">
-        <% data.items.forEach(item => { %>
-          <a href=<%= item.url %>><%= item.name %></a>
+      <h1><%= data.name %></h1>
+      <p><%= data.description %></p>
+      <div class="categories-container">
+        <p>Categories: 
+        <% categories.forEach(category => { %>
+          <%= category.name %>
         <% }) %>
+        </p>
       </div>
     </section>
 </body>
