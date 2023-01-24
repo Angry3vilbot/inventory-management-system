@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMS - <%= title %></title>
+</head>
+<body>
+    <nav class="sidebar">
+        <h2>IMS</h2>
+        <div class="nav-links-container"><!-- Used to position links properly -->
+          <ul>
+            <li><a href="/items">All Items</a></li>
+            <li><a href="/categories">All categories</a></li>
+            <li><a href="/item/create">Add New Item</a></li>
+            <li><a href="/category/create">Add New Category</a></li>
+          </ul>
+        </div>
+    </nav>
+    <section class="main">
+        <h1><%= title %></h1>
+        <form action="" method="post">
+            <fieldset>
+                <label for="name">Item Name</label>
+                <input placeholder="Item Name" required type="text" name="name" id="name" value=<% if(typeof(item) != "undefined") { %><%= item.name %><% } else { %><% } %>>
+                
+                <label for="description">Description</label>
+                <textarea placeholder="Description" required type="text" name="description" id="description" value=<% if(typeof(item) != "undefined") { %><%= item.description %><% } else { %><% } %>>
+                
+                <label for="price">Price (in Euro)</label>
+                <input type="number" name="price" id="price" min="0.01">
+            </fieldset>
+            <fieldset>
+                <% categories.forEach(category => { %>
+                      <% if (typeof(item) != "undefined" && category.checked == "true") { %>
+                        <input class="checkbox-input" type="checkbox" name="category" checked value='<%= category._id %>' id='<%= category._id %>'>
+                      <% } else { %>
+                        <input class="checkbox-input" type="checkbox" name="category" value='<%= category._id %>' id='<%= category._id %>'>
+                      <% } %> 
+                        <label for=<%= category._id %>> <%= category.name %> </label>
+                <% }) %>
+            </fieldset>
+        </form>
+    </section>
+</body>
+</html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Inventory Management System</title>
+    <title>IMS - <%= data.name %> </title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel="stylesheet" href="/stylesheets/itemStyle.css">
   </head>
@@ -12,18 +12,19 @@
         <ul>
           <li><a href="/items">All Items</a></li>
           <li><a href="/categories">All categories</a></li>
-          <li><a href="">Add New Item</a></li>
-          <li><a href="">Add New Category</a></li>
+          <li><a href="/item/create">Add New Item</a></li>
+          <li><a href="/category/create">Add New Category</a></li>
         </ul>
       </div>
     </nav>
     <section class="main">
       <h1><%= data.name %></h1>
       <p><%= data.description %></p>
+      <p>Price: <%= data.price %> Euro</p>
       <div class="categories-container">
         <p>Categories: 
         <% categories.forEach(category => { %>
-          <%= category.name %>
+          <a href="/category/<%= category.name.toLowerCase() %>"><%= category.name %></a>
         <% }) %>
         </p>
       </div>

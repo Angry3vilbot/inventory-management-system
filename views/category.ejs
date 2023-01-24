@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Inventory Management System</title>
+    <title>IMS - <%= category.name %> </title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel="stylesheet" href="/stylesheets/categoryStyle.css">
   </head>
@@ -24,7 +24,7 @@
         <div class="item-grid">
           <% itemsArray.forEach(item => { %>
            <div class="item">
-            <h4><%= item.name %> </h4>
+            <a href="/item/<%= item._id %>"><h4><%= item.name %></h4></a>
             <p>Price: <%= item.price %> EUR</p>
             <% if (item.stock < 1) {%> 
             <p>Stock: <span style="color: red;"><%= item.stock %></span> units</p>

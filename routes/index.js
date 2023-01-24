@@ -11,11 +11,15 @@ router.get('/', itemController.index);
 router.get('/categories', categoryController.allCategories)
 // GET category page
 router.get('/category/:name', categoryController.categoryDisplay)
+// GET category creation/modification page
+router.get('/category/create', categoryController.createCategory)
 
 // All item-related routes
 // GET main item list page
 router.get('/items', itemController.allItems)
 // GET item page
 router.get('/item/:id', itemController.itemDisplay)
+// GET item creation/modification page
+router.get('/item/create', itemController.createItem)
 
 module.exports = router;
