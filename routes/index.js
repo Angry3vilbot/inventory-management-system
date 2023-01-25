@@ -20,6 +20,8 @@ router.get('/items', itemController.allItems)
 // GET item page
 router.get('/item/:id', itemController.itemDisplay)
 // GET item creation/modification page
-router.get('/item/create', itemController.createItem)
+router.get('/items/create', itemController.createItem)
+// POST new item data
+router.post('/items/create', itemController.createItemPost)
 
 module.exports = router;

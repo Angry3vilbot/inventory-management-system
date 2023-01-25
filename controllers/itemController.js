@@ -2,6 +2,7 @@ const ItemModel = require("../models/item.js")
 const CategoryModel = require("../models/category.js")
 const async = require("async")
 const { default: mongoose } = require("mongoose")
+const { body, validationResult } = require("express-validator")
 
 exports.index = (req, res) => {
     async.parallel(
@@ -67,3 +68,72 @@ exports.itemDisplay = (req, res) => {
         }
     )
 }
+
+exports.createItem = (req, res) => {
+    async.parallel(
+        {
+            categories(callback) {
+                CategoryModel.find({}, callback)
+            }
+        },
+        (err, results) => {
+            console.log(results.categories)
+            res.render("item_form", {
+                error: err,
+                categories: results.categories,
+                title: "Create Item",
+            })
+        }
+    )
+}
+
+exports.createItemPost = [
+    // Validate and sanitize fields.
+    body("name")
+      .trim()
+      .isLength({ min: 1 })
+      .escape()
+      .withMessage("Name must be specified."),
+    body("description")
+      .trim()
+      .isLength({ min: 1 })
+      .escape()
+      .withMessage("Description must be specified."),
+    body("price", "Invalid price")
+      .isFloat({ min: 1 }),
+    body("stock", "Invalid stock amount")
+      .isNumeric(),
+    body("category").escape(),
+    // Process request after validation and sanitization.
+    (req, res, next) => {
+      // Extract the validation errors from a request.
+      const errors = validationResult(req);
+  
+      if (!errors.isEmpty()) {
+        // There are errors. Render form again with sanitized values/errors messages.
+        res.render("item_form", {
+          title: "Create Item",
+          item: req.body,
+          errors: errors.array(),
+        });
+        return;
+      }
+      // Data from form is valid.
+  
+      // Create an Author object with escaped and trimmed data.
+      const item = new ItemModel({
+        name: req.body.name,
+        description: req.body.description,
+        price: req.body.price,
+        stock: req.body.stock,
+        category: req.body.category,
+      });
+      item.save((err) => {
+        if (err) {
+          return next(err);
+        }
+        // Successful - redirect to new author record.
+        res.redirect(item.url);
+      });
+    },
+];

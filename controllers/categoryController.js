@@ -47,3 +47,7 @@ exports.categoryDisplay = (req, res) => {
         }
     )
 }
+
+exports.createCategory = (req, res) => {
+
+}
