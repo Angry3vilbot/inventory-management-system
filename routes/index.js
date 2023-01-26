@@ -11,15 +11,17 @@ router.get('/', itemController.index);
 router.get('/categories', categoryController.allCategories)
 // GET category page
 router.get('/category/:name', categoryController.categoryDisplay)
-// GET category creation/modification page
-router.get('/category/create', categoryController.createCategory)
+// GET category creation page
+router.get('/categories/create', categoryController.createCategory)
+// POST new category data
+router.post('/categories/create', categoryController.createCategoryPost)
 
 // All item-related routes
 // GET main item list page
 router.get('/items', itemController.allItems)
 // GET item page
 router.get('/item/:id', itemController.itemDisplay)
-// GET item creation/modification page
+// GET item creation page
 router.get('/items/create', itemController.createItem)
 // POST new item data
 router.post('/items/create', itemController.createItemPost)

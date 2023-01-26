@@ -120,7 +120,7 @@ exports.createItemPost = [
       }
       // Data from form is valid.
   
-      // Create an Author object with escaped and trimmed data.
+      // Create an Item object with escaped and trimmed data.
       const item = new ItemModel({
         name: req.body.name,
         description: req.body.description,
@@ -132,7 +132,7 @@ exports.createItemPost = [
         if (err) {
           return next(err);
         }
-        // Successful - redirect to new author record.
+        // Successful - redirect to new item page.
         res.redirect(item.url);
       });
     },
