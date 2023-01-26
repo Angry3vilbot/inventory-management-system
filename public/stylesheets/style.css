@@ -58,7 +58,7 @@ body {
 }
 
 .data-uncategorised {
-  background-color: #7c8494;
+  background-color: #696d75;
 }
 
 .data-outofstock {
@@ -74,7 +74,7 @@ body {
 }
 
 .data-uncategorised:is(.active) {
-  background-color: #585e69;
+  background-color: #848c9b;
 }
 
 .data-outofstock:is(.active) {

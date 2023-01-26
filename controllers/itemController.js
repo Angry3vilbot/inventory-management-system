@@ -14,7 +14,7 @@ exports.index = (req, res) => {
                 CategoryModel.countDocuments({}, callback)
             },
             uncategorisedItems(callback) {
-                ItemModel.countDocuments({ category: null }, callback)
+                ItemModel.countDocuments({ category: [] }, callback)
             },
             outOfStockItems(callback) {
                 ItemModel.countDocuments({ stock: 0 }, callback)
@@ -121,13 +121,29 @@ exports.createItemPost = [
       // Data from form is valid.
   
       // Create an Item object with escaped and trimmed data.
-      const item = new ItemModel({
-        name: req.body.name,
-        description: req.body.description,
-        price: req.body.price,
-        stock: req.body.stock,
-        category: req.body.category,
-      });
+      console.log(req.category)
+      if(req.category){
+            const item = new ItemModel({
+            name: req.body.name,
+            description: req.body.description,
+            price: req.body.price,
+            stock: req.body.stock,
+            category: req.body.category,
+        });
+        item.save((err) => {
+            if (err) {
+              return next(err);
+            }
+            // Successful - redirect to new item page.
+            res.redirect(item.url);
+          });
+      } else {
+        const item = new ItemModel({
+            name: req.body.name,
+            description: req.body.description,
+            price: req.body.price,
+            stock: req.body.stock,
+      })
       item.save((err) => {
         if (err) {
           return next(err);
@@ -135,5 +151,6 @@ exports.createItemPost = [
         // Successful - redirect to new item page.
         res.redirect(item.url);
       });
+     }
     },
 ];
