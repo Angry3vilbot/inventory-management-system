@@ -15,6 +15,10 @@ router.get('/category/:name', categoryController.categoryDisplay)
 router.get('/categories/create', categoryController.createCategory)
 // POST new category data
 router.post('/categories/create', categoryController.createCategoryPost)
+// GET category update page
+router.get('/category/:name/update', categoryController.updateCategory)
+// POST category update
+router.post('/category/:name/update', categoryController.updateCategoryPost)
 
 // All item-related routes
 // GET main item list page

@@ -36,6 +36,7 @@
         </div>
       <% } else { %>
         <p><strong><%= category.name %></strong> category contains no items.</p>
-      <% } %> 
+      <% } %>
+      <a href=<%=`${category.url}/update`%>>Update Category</a>
     </section>
 </body>
