@@ -23,7 +23,7 @@
         <form action="" method="post">
             <fieldset>
                 <label for="name">Category Name</label>
-                <input placeholder="Category Name" required type="text" name="name" id="name" value=<% if(typeof(category) != "undefined") { %><%= category.name %><% } else { %><% } %>>
+                <input placeholder="Category Name" required type="text" name="name" id="name" value="<% if(typeof(category) != "undefined") { %><%= category.name %><% } else { %><% } %>">
             </fieldset>
             <button type="submit">Submit</button>
         </form>

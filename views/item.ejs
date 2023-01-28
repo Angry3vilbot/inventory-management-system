@@ -22,11 +22,15 @@
       <p><%= data.description %></p>
       <p>Price: <%= data.price %> Euro</p>
       <div class="categories-container">
-        <p>Categories: 
-        <% categories.forEach(category => { %>
-          <a href="/category/<%= category.name.toLowerCase() %>"><%= category.name %></a>
-        <% }) %>
+        <% if(categories.length > 0) {%> 
+          <p>Categories: 
+          <% categories.forEach(category => { %>
+            <a href="/category/<%= category.name.toLowerCase() %>"><%= category.name %></a>
+        <% })} else { %>
+          <p>No category</p>
+        <% } %> 
         </p>
       </div>
+      <a href=<%=`${data.url}/update`%>>Update Item</a>
     </section>
 </body>

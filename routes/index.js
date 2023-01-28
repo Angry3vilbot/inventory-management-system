@@ -29,5 +29,9 @@ router.get('/item/:id', itemController.itemDisplay)
 router.get('/items/create', itemController.createItem)
 // POST new item data
 router.post('/items/create', itemController.createItemPost)
+// GET item update page
+router.get('/item/:id/update', itemController.updateItem)
+// POST item update
+router.post('/item/:id/update', itemController.updateItemPost)
 
 module.exports = router;

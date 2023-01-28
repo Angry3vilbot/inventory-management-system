@@ -24,11 +24,7 @@ exports.categoryDisplay = (req, res) => {
     async.parallel(
         {
             category(callback) {
-                console.log(req.params)
-                if(!req.params.name){
-                    console.log(req.params)
-                }
-                else {CategoryModel.find({ $text: { $search: req.params.name } }).exec(callback)}
+                CategoryModel.find({ $text: { $search: req.params.name } }).exec(callback)
             }
         },
         async function (err, results) {
@@ -159,7 +155,7 @@ exports.updateCategoryPost = [
                   return next(err);
                 }
           
-                // Successful: redirect to book detail page.
+                // Successful: redirect to category detail page.
                 res.redirect(thecategory.url);
               });
         }
@@ -173,7 +169,7 @@ exports.updateCategoryPost = [
                   return next(err);
                 }
           
-                // Successful: redirect to book detail page.
+                // Successful: redirect to category detail page.
                 res.redirect(`/category/${req.body.name.toLowerCase().replace(/\s/g,'-')}`);
               });
         }
