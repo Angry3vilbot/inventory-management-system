@@ -207,7 +207,7 @@ exports.deleteCategory = (req, res) => {
     )
 }
 
-exports.deleteCategoryPost = (req, res) => {
+exports.deleteCategoryPost = (req, res, next) => {
     async.parallel(
         {
             category(callback) {
@@ -243,4 +243,4 @@ exports.deleteCategoryPost = (req, res) => {
             });
         }
     );
-  };
+};

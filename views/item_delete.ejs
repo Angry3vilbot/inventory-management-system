@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMS - <%= title %></title>
+</head>
+<body>
+    <nav class="sidebar">
+        <h2><a href="/">IMS</a></h2>
+        <div class="nav-links-container"><!-- Used to position links properly -->
+          <ul>
+            <li><a href="/items">All Items</a></li>
+            <li><a href="/categories">All categories</a></li>
+            <li><a href="/items/create">Add New Item</a></li>
+            <li><a href="/categories/create">Add New Category</a></li>
+          </ul>
+        </div>
+    </nav>
+    <section class="main">
+        <h1><%= title %></h1>
+        <p>Are you sure you want to delete this item?</p>
+        <form action="" method="post">
+            <input type="hidden" name="item_id" required id="item_id" value="<%= item._id %>">
+            <button type="submit">Yes, delete the item.</button>
+        </form>
+        <% if (typeof(errors) != "undefined") { %>
+          <h2><%= errors.msg %> </h2>
+        <% } %>
+    </section>
+</body>
+</html>

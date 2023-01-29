@@ -253,3 +253,29 @@ exports.updateItemPost = [
      }
 },
 ];
+
+exports.deleteItem = (req, res) => {
+    async.parallel(
+        {
+            item(callback) {
+                ItemModel.findById(req.params.id).exec(callback)
+            }
+        },
+        (err, results) => {
+            res.render("item_delete", {
+                title: `Delete Item ${results.item.name}`,
+                error: err,
+                item: results.item,
+            })
+        }
+    )
+}
+
+exports.deleteItemPost = (req, res, next) => {
+    ItemModel.findByIdAndRemove(req.body.item_id, (err) => {
+    if (err) {
+        return next(err);
+    }
+     res.redirect("/items");
+    });
+};

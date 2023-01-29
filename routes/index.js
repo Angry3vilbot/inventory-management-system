@@ -37,5 +37,9 @@ router.post('/items/create', itemController.createItemPost)
 router.get('/item/:id/update', itemController.updateItem)
 // POST item update
 router.post('/item/:id/update', itemController.updateItemPost)
+// GET item delete page
+router.get('/item/:id/delete', itemController.deleteItem)
+// POST item deletion
+router.post('/item/:id/delete', itemController.deleteItemPost)
 
 module.exports = router;
