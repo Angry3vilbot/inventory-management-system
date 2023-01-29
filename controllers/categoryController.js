@@ -175,3 +175,72 @@ exports.updateCategoryPost = [
         }
 },
 ];
+
+exports.deleteCategory = (req, res) => {
+    async.parallel(
+        {
+            category(callback) {
+                CategoryModel.find({ $text: { $search: req.params.name } }).exec(callback)
+            }
+        },
+        async function (err, results) {
+            if(results.category.length > 1) {
+                let correctResult = results.category.filter(obj => obj.name.toLowerCase().replace(/\s/g,'-') == req.params.name)
+                const itemsArray = await ItemModel.find({ category: correctResult[0]._id })
+                res.render("category_delete", {
+                    title: `Delete Category ${correctResult[0].name}`,
+                    error: err,
+                    category: correctResult[0],
+                    itemsArray: itemsArray
+                })
+            }
+            else{
+                const itemsArray = await ItemModel.find({ category: results.category[0]._id })
+                res.render("category_delete", {
+                    title: `Delete Category ${results.category[0].name}`,
+                    error: err,
+                    category: results.category[0],
+                    itemsArray: itemsArray
+                })
+            }
+        }
+    )
+}
+
+exports.deleteCategoryPost = (req, res) => {
+    async.parallel(
+        {
+            category(callback) {
+                CategoryModel.findById(req.body.category_id).exec(callback);
+            },
+            items(callback) {
+                ItemModel.find({ category: req.body.category_id }).exec(callback)
+            }
+        },
+        (err, results) => {
+            if (err) {
+                return next(err);
+            }
+            results.items.forEach(item => {
+                const newitem = new ItemModel({
+                    name: item.name,
+                    description: item.description,
+                    price: item.price,
+                    stock: item.stock,
+                    _id: item._id,
+                })
+                ItemModel.findByIdAndUpdate(item._id, newitem, (err, theitem) => {
+                    if (err) {
+                      return next(err);
+                    }
+                  });
+            });
+            CategoryModel.findByIdAndRemove(req.body.category_id, (err) => {
+                if (err) {
+                    return next(err);
+                }
+                res.redirect("/categories");
+            });
+        }
+    );
+  };

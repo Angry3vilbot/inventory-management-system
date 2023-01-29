@@ -19,6 +19,10 @@ router.post('/categories/create', categoryController.createCategoryPost)
 router.get('/category/:name/update', categoryController.updateCategory)
 // POST category update
 router.post('/category/:name/update', categoryController.updateCategoryPost)
+// GET category delete page
+router.get('/category/:name/delete', categoryController.deleteCategory)
+// POST category deletion
+router.post('/category/:name/delete', categoryController.deleteCategoryPost)
 
 // All item-related routes
 // GET main item list page

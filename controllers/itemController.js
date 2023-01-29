@@ -236,15 +236,13 @@ exports.updateItemPost = [
             res.redirect(item.url);
           });
       } else {
-        console.log("REQ BODY:")
-        console.log(req.body)
         const item = new ItemModel({
             name: req.body.name,
             description: req.body.description,
             price: req.body.price,
             stock: req.body.stock,
             _id: req.body.id,
-      })
+        })
       ItemModel.findByIdAndUpdate(item._id, item, (err, theitem) => {
         if (err) {
           return next(err);

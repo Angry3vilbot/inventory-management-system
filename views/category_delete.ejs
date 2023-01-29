@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/stylesheets/style.css">
-    <link rel="stylesheet" href="/stylesheets/formStyle.css">
     <title>IMS - <%= title %></title>
 </head>
 <body>
@@ -22,12 +20,18 @@
     </nav>
     <section class="main">
         <h1><%= title %></h1>
+        <% if (typeof(itemsArray) != "undefined" && itemsArray.length > 0) { %>
+            <p><strong>Warning! <%= category.name %> category has <%= itemsArray.length %> items in it.</strong></p>
+            <p>If you delete it now, these items will become uncategorised:</p>
+            <ul>
+                <% itemsArray.forEach(item => { %>
+                    <li><%= item.name %></li>
+                <% }) %> 
+            </ul>
+        <% } %>
         <form action="" method="post">
-            <fieldset>
-                <label for="name">Category Name</label>
-                <input placeholder="Category Name" required type="text" name="name" id="name" value="<% if(typeof(category) != "undefined") { %><%= category.name %><% } else { %><% } %>">
-            </fieldset>
-            <button type="submit">Submit</button>
+            <input type="hidden" name="category_id" required id="category_id" value="<%= category._id %>">
+            <button type="submit">Delete Category</button>
         </form>
         <% if (typeof(errors) != "undefined") { %>
           <% console.log(errors) %> 

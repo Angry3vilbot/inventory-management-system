@@ -1,0 +1,53 @@
+@layer base {
+    input[type='number']::-webkit-outer-spin-button,
+    input[type='number']::-webkit-inner-spin-button,
+    input[type='number'] {
+      -webkit-appearance: none;
+      margin: 0;
+      -moz-appearance: textfield !important;
+    }
+ }
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form fieldset:first-of-type {
+    display: flex;
+    flex-direction: column;
+}
+
+form fieldset:last-of-type {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+form fieldset:last-of-type>div:nth-child(2n) {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-self: flex-end;
+}
+
+textarea {
+    resize: vertical;
+}
+
+input[type=text], input[type=number] {
+    height: 1.5rem;
+}
+
+button[type=submit] {
+    width: 10rem;
+    align-self: center;
+    margin-top: 1rem;
+    background-color: #60a5fa;
+    border-radius: 0.5rem;
+    border: 2px solid transparent;
+}
+
+button[type=submit]:hover {
+    cursor: pointer;
+    background-color: #7db7ff;
+    border: 2px solid #2563eb;
+}
